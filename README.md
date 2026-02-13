@@ -3,7 +3,7 @@
 Website pessoal e acadêmico para apresentação de trajetória estudantil, pesquisas e projetos.
 
 ## 📌 Sobre o Projeto
-Este repositório centraliza minha produção acadêmica, oferecendo uma visão clara das minhas competências, formação e principais atividades de pesquisa em ADS(Análise e Desenvolvimento de Sistemas).
+Este repositório centraliza minha produção acadêmica, oferecendo uma visão clara das minhas competências, formação e principais atividades de pesquisa em ADS (Análise e Desenvolvimento de Sistemas).
 
 ## 🛠️ Tecnologias
 - **HTML5** (Estrutura semântica)

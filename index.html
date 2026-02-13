@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Nome | Portfólio Acadêmico</title>
+    <title>Murilo Guimarães | Portfólio Acadêmico</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="geometric-shape circle-1"></div>
+    <div class="geometric-shape circle-2"></div>
+    <div class="geometric-shape circle-3"></div>
+    <div class="geometric-shape square-1"></div>
+    <div class="geometric-shape square-2"></div>
+    <div class="geometric-shape triangle-1"></div>
 
     <nav>
         <div class="container">
@@ -23,8 +29,8 @@
 
     <header>
         <div class="container">
-            <h1>Seu Nome</h1>
-            <p class="subtitle">Estudante de [Seu Curso] • Anhanguera</p>
+            <h1>Murilo Guimarães</h1>
+            <p class="subtitle">Estudante de ADS • Anhanguera</p>
             <div class="badges">
                 <span>Pesquisa</span>
                 <span>Inovação</span>
@@ -43,7 +49,7 @@
             <h2>Formação Acadêmica</h2>
             <div class="timeline">
                 <div class="item">
-                    <h3>Graduação em [Nome do Curso]</h3>
+                    <h3>Graduação em Análise e Desenvolvimento de Sistemas</h3>
                     <p class="date">2023 — Presente | Anhanguera</p>
                 </div>
             </div>
@@ -61,58 +67,62 @@
             </div>
         </section>
 
-<section id="projetos">
-    <h2>Projetos e Pesquisas</h2>
-<div class="slider">
-    <div class="card">
-        <h3>Análise Socioeconômica Regional</h3>
-        <p>Estudo sobre o impacto da indústria local no desenvolvimento da cidade.</p>
-        <button class="expand-btn" onclick="toggleExpand(this)">
-            Detalhes <span>▼</span>
-        </button>
-        <div class="extra-content">
-            <p>Este projeto utilizou dados do IBGE para mapear o crescimento do setor de serviços nos últimos 5 anos, aplicando métodos estatísticos avançados.</p>
-            <a href="projeto1-teste.html" class="view-btn">Ver Projeto</a>
-        </div>
-    </div>
+        <section id="projetos">
+            <div class="projetos-header">
+                <h2>Projetos e Pesquisas</h2>
+                <button class="master-btn" id="btn-toggle-all" onclick="toggleAll()">Expandir Tudo</button>
+            </div>
+            
+            <div class="slider">
+                <div class="card">
+                    <h3>Análise Socioeconômica Regional</h3>
+                    <p>Estudo sobre o impacto da indústria local no desenvolvimento da cidade.</p>
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        Detalhes <span>▼</span>
+                    </button>
+                    <div class="extra-content">
+                        <p>Este projeto utilizou dados do IBGE para mapear o crescimento do setor de serviços nos últimos 5 anos.</p>
+                        <a href="projeto1-teste.html" class="view-btn">Ver Projeto</a>
+                    </div>
+                </div>
 
-    <div class="card">
-        <h3>Sistema de Gestão Hospitalar</h3>
-        <p>Protótipo de software para triagem rápida em unidades de pronto atendimento.</p>
-        <button class="expand-btn" onclick="toggleExpand(this)">
-            Detalhes <span>▼</span>
-        </button>
-        <div class="extra-content">
-            <p>Desenvolvido como projeto integrador, o foco foi na usabilidade (UX) para enfermeiros e na segurança de dados dos pacientes.</p>
-            <a href="projeto2-teste.html" class="view-btn">Ver Projeto</a>
-        </div>
-    </div>
+                <div class="card">
+                    <h3>Sistema de Gestão Hospitalar</h3>
+                    <p>Protótipo de software para triagem rápida em unidades de pronto atendimento.</p>
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        Detalhes <span>▼</span>
+                    </button>
+                    <div class="extra-content">
+                        <p>Desenvolvido como projeto integrador, o foco foi na usabilidade (UX) para enfermeiros.</p>
+                        <a href="projeto2-teste.html" class="view-btn">Ver Projeto</a>
+                    </div>
+                </div>
 
-    <div class="card">
-        <h3>Psicopedagogia no Ensino Remoto</h3>
-        <p>Relatório de estágio sobre os desafios da aprendizagem à distância.</p>
-        <button class="expand-btn" onclick="toggleExpand(this)">
-            Detalhes <span>▼</span>
-        </button>
-        <div class="extra-content">
-            <p>Uma análise profunda sobre a retenção de atenção em crianças de 6 a 10 anos utilizando ferramentas de gamificação durante a pandemia.</p>
-            <a href="projeto3-teste.html" class="view-btn">Ver Projeto</a>
-        </div>
-    </div>
+                <div class="card">
+                    <h3>Psicopedagogia no Ensino Remoto</h3>
+                    <p>Relatório de estágio sobre os desafios da aprendizagem à distância.</p>
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        Detalhes <span>▼</span>
+                    </button>
+                    <div class="extra-content">
+                        <p>Uma análise profunda sobre a retenção de atenção utilizando ferramentas de gamificação.</p>
+                        <a href="projeto3-teste.html" class="view-btn">Ver Projeto</a>
+                    </div>
+                </div>
 
-    <div class="card">
-        <h3>Eficiência Energética Residencial</h3>
-        <p>Projeto de automação de baixo custo utilizando sensores de presença.</p>
-        <button class="expand-btn" onclick="toggleExpand(this)">
-            Detalhes <span>▼</span>
-        </button>
-        <div class="extra-content">
-            <p>O protótipo demonstrou uma economia de até 15% na conta de luz ao gerenciar o desligamento automático de luzes e ar-condicionado.</p>
-            <a href="projeto4-teste.html" class="view-btn">Ver Projeto</a>
-        </div>
-    </div>
-</div>
-</section>
+                <div class="card">
+                    <h3>Eficiência Energética Residencial</h3>
+                    <p>Projeto de automação de baixo custo utilizando sensores de presença.</p>
+                    <button class="expand-btn" onclick="toggleExpand(this)">
+                        Detalhes <span>▼</span>
+                    </button>
+                    <div class="extra-content">
+                        <p>O protótipo demonstrou uma economia de até 15% na conta de luz.</p>
+                        <a href="projeto4-teste.html" class="view-btn">Ver Projeto</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="contato">
             <h2>Contato</h2>
@@ -130,82 +140,6 @@
 
     <a href="#" id="back-to-top" title="Voltar ao topo">↑</a>
 
-<script>
-        // Alternar Modo Escuro
-        const btnDark = document.getElementById('dark-mode-toggle');
-        btnDark.onclick = function() {
-            document.body.classList.toggle('dark-mode');
-        };
-
-        // Mostrar/Esconder botão Voltar ao Topo
-        const backToTop = document.getElementById('back-to-top');
-        window.onscroll = function() {
-            if (window.scrollY > 300) {
-                backToTop.style.display = "flex";
-            } else {
-                backToTop.style.display = "none";
-            }
-        };
-        const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section);
-});
-// Seleciona o container do carrossel
-const slider = document.querySelector('.slider');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-// Quando o usuário clica
-slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-});
-
-// Quando o mouse sai da área
-slider.addEventListener('mouseleave', () => {
-    isDown = false;
-});
-
-// Quando o usuário solta o clique
-slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-});
-
-// Quando o mouse se move enquanto clicado
-slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return; // Se não estiver clicado, não faz nada
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // Multiplicado por 2 para a rolagem ser mais rápida
-    slider.scrollLeft = scrollLeft - walk;
-});
-
-function toggleExpand(btn) {
-    const content = btn.nextElementSibling;
-    const span = btn.querySelector('span');
-    
-    // Alterna a classe 'open'
-    const isOpen = content.classList.toggle('open');
-    
-    // Altera o texto e a seta para dar feedback claro
-    if (isOpen) {
-        btn.innerHTML = 'Fechar Detalhes <span>▲</span>';
-    } else {
-        btn.innerHTML = 'Ver Detalhes <span>▼</span>';
-    }
-}
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,20 +1,45 @@
 :root {
-    --primary: #003366; /* Azul Anhanguera */
-    --accent: #003366;  /* No modo claro, o destaque também é Azul */
+    --primary: #003366;
+    --accent: #003366;
     --bg: #f8f9fa;
     --text: #333;
     --white: #ffffff;
+    --gradient-start: #003366;
+    --gradient-end: #001f3d;
 }
 
-/* Configuração do Modo Escuro */
 body.dark-mode {
     --bg: #121212;
     --text: #e0e0e0;
     --white: #1e1e1e;
-    --primary: #F26522; /* No escuro, a cor primária vira Laranja */
-    --accent: #F26522;  /* No escuro, o destaque vira Laranja */
+    --primary: #F26522;
+    --accent: #F26522;
+    --gradient-start: #F26522;
+    --gradient-end: #b34718;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    
+    /* Cria o degradê no texto */
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end), var(--gradient-start));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* Transição suave de cor e animação constante */
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
 
 /* Botão Modo Escuro */
 #dark-mode-toggle {
@@ -53,11 +78,11 @@ nav a { text-decoration: none; color: var(--primary); font-weight: 600; font-siz
 /* Header */
 header {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--primary), #001f3d);
-    color: white;
+    background: var(--white); 
+    border-bottom: 2px solid var(--accent);
     text-align: center;
+    transition: background 0.5s ease, border-color 0.5s ease;
 }
-
 h1 { font-size: 2.5rem; margin-bottom: 10px; }
 .subtitle { opacity: 0.9; font-size: 1.1rem; }
 
@@ -84,6 +109,45 @@ h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.8rem; }
     transition: transform 0.3s ease;
 }
 .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+/* --- CABEÇALHO DA SEÇÃO DE PROJETOS --- */
+.projetos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Botão Mestre (Expandir/Recolher Tudo) */
+.master-btn {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.master-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Ajuste do Botão Mestre no Modo Escuro */
+body.dark-mode .master-btn {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+body.dark-mode .master-btn:hover {
+    background: var(--accent);
+    color: var(--white);
+}
 
 .tag {
     display: inline-block;
@@ -265,4 +329,43 @@ section.visible {
     border-radius: 5px;
 }
 
+
 footer { text-align: center; padding: 40px; font-size: 0.8rem; opacity: 0.6; }
+
+/* --- DECORAÇÃO: FORMAS GEOMÉTRICAS PROFISSIONAIS --- */
+.geometric-shape {
+    position: fixed;
+    opacity: 0.05; /* Menos opaco para não distrair */
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(1px);
+    background-color: var(--accent);
+    /* Animação ligeiramente mais rápida e variada */
+    animation: float-pro 12s ease-in-out infinite;
+}
+
+/* Adicionando mais formas para preencher o vazio */
+.circle-1 { width: 120px; height: 120px; border-radius: 50%; top: 10%; left: 5%; animation-duration: 14s; }
+.circle-2 { width: 180px; height: 180px; border-radius: 50%; bottom: 10%; right: 5%; animation-duration: 18s; }
+.circle-3 { width: 60px; height: 60px; border-radius: 50%; top: 45%; left: 15%; opacity: 0.03; animation-duration: 10s; }
+
+.square-1 { width: 80px; height: 80px; top: 25%; right: 10%; transform: rotate(45deg); animation-duration: 15s; }
+.square-2 { width: 50px; height: 50px; bottom: 30%; left: 8%; transform: rotate(-15deg); opacity: 0.04; animation-duration: 12s; }
+
+.triangle-1 {
+    width: 0; height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 90px solid var(--accent);
+    background-color: transparent !important;
+    top: 65%; left: 40%;
+    animation-duration: 20s;
+}
+
+/* Nova animação: movimento ]em "oito" ou infinito sutil */
+@keyframes float-pro {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(20px, -25px) rotate(5deg); }
+    66% { transform: translate(-15px, 15px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}

@@ -1,19 +1,36 @@
-        // Alternar Modo Escuro
-        const btnDark = document.getElementById('dark-mode-toggle');
-        btnDark.onclick = function() {
-            document.body.classList.toggle('dark-mode');
-        };
+// --- 1. MODO ESCURO COM MEMÓRIA (LocalStorage) ---
+const btnDark = document.getElementById('dark-mode-toggle');
+const body = document.body;
 
-        // Mostrar/Esconder botão Voltar ao Topo
-        const backToTop = document.getElementById('back-to-top');
-        window.onscroll = function() {
-            if (window.scrollY > 300) {
-                backToTop.style.display = "flex";
-            } else {
-                backToTop.style.display = "none";
-            }
-        };
-        const observer = new IntersectionObserver((entries) => {
+// Verifica preferência salva ao carregar
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    body.classList.add('dark-mode');
+}
+
+btnDark.onclick = function() {
+    body.classList.toggle('dark-mode');
+    
+    // Pequeno efeito de destaque no nome ao trocar
+    const nameTitle = document.querySelector('h1');
+    nameTitle.style.transform = 'scale(1.02)';
+    setTimeout(() => nameTitle.style.transform = 'scale(1)', 200);
+
+    localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+};
+// --- 2. NAVEGAÇÃO E ANIMAÇÕES (Scroll) ---
+const backToTop = document.getElementById('back-to-top');
+
+window.onscroll = function() {
+    // Mostrar/Esconder botão Voltar ao Topo
+    if (window.scrollY > 300) {
+        backToTop.style.display = "flex";
+    } else {
+        backToTop.style.display = "none";
+    }
+};
+
+// Animação de entrada das seções (Fade-in)
+const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
@@ -24,13 +41,54 @@
 document.querySelectorAll('section').forEach((section) => {
     observer.observe(section);
 });
-// Seleciona o container do carrossel
+
+// --- 3. CONTROLE DOS PROJETOS (Expansão e Scroll Automático) ---
+
+// Função para abrir/fechar card individual
+function toggleExpand(btn) {
+    const content = btn.nextElementSibling;
+    const isOpen = content.classList.toggle('open');
+    
+    btn.innerHTML = isOpen ? 'Fechar <span>▲</span>' : 'Detalhes <span>▼</span>';
+
+    if (isOpen) {
+        setTimeout(() => {
+            content.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest' 
+            });
+        }, 150); 
+    }
+}
+
+// Função Mestre: Expandir ou Recolher tudo simultaneamente
+function toggleAll() {
+    const allContent = document.querySelectorAll('.extra-content');
+    const allButtons = document.querySelectorAll('.expand-btn');
+    const masterBtn = document.getElementById('btn-toggle-all'); // Seleciona o botão mestre
+    
+    const shouldOpen = !allContent[0].classList.contains('open');
+
+    allContent.forEach((content, index) => {
+        if (shouldOpen) {
+            content.classList.add('open');
+            allButtons[index].innerHTML = 'Fechar <span>▲</span>';
+        } else {
+            content.classList.remove('open');
+            allButtons[index].innerHTML = 'Detalhes <span>▼</span>';
+        }
+    });
+
+    // Linha nova para atualizar o texto do botão principal:
+    masterBtn.innerText = shouldOpen ? 'Recolher Tudo' : 'Expandir Tudo';
+}
+
+// --- 4. CARROSSEL (Arrastar com Mouse) ---
 const slider = document.querySelector('.slider');
 let isDown = false;
 let startX;
 let scrollLeft;
 
-// Quando o usuário clica
 slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.classList.add('active');
@@ -38,37 +96,19 @@ slider.addEventListener('mousedown', (e) => {
     scrollLeft = slider.scrollLeft;
 });
 
-// Quando o mouse sai da área
 slider.addEventListener('mouseleave', () => {
     isDown = false;
 });
 
-// Quando o usuário solta o clique
 slider.addEventListener('mouseup', () => {
     isDown = false;
     slider.classList.remove('active');
 });
 
-// Quando o mouse se move enquanto clicado
 slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return; // Se não estiver clicado, não faz nada
+    if (!isDown) return; 
     e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // Multiplicado por 2 para a rolagem ser mais rápida
+    const walk = (x - startX) * 2; 
     slider.scrollLeft = scrollLeft - walk;
 });
-
-function toggleExpand(btn) {
-    const content = btn.nextElementSibling;
-    const span = btn.querySelector('span');
-    
-    // Alterna a classe 'open'
-    const isOpen = content.classList.toggle('open');
-    
-    // Altera o texto e a seta para dar feedback claro
-    if (isOpen) {
-        btn.innerHTML = 'Fechar Detalhes <span>▲</span>';
-    } else {
-        btn.innerHTML = 'Ver Detalhes <span>▼</span>';
-    }
-}

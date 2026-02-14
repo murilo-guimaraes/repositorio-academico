@@ -4,7 +4,7 @@ Website pessoal desenvolvido para centralizar minha trajetória estudantil, proj
 
 ## 🚀 Visualizar Projeto
 O portfólio está publicado e pode ser acessado em:  
-👉 **[murilo-guimaraes.github.io/website-portfolio/](https://murilo-guimaraes.github.io/website-portfolio/)**
+👉 **[murilo-guimaraes.github.io/portfolio/](https://murilo-guimaraes.github.io/portfolio/)**
 > ⚠️ **Nota:** Este site está em constante desenvolvimento. Erros e bugs podem ocorrer.  
 > Feedbacks e sugestões são sempre muito bem-vindos!
 ---

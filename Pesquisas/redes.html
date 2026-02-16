@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Acadêmico: Como os Dados Viajam | Murilo Guimarães</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 0px;
+            display: block !important;
+        }
+
+        header {
+            min-height: 45vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+        
+
+        header h1 {
+            font-size: clamp(2.2rem, 8vw, 3.8rem);
+            margin: 0;
+            color: var(--accent);
+            text-transform: none; /* Removido o maiúsculo forçado */
+        }
+
+        .report-section {
+            margin-bottom: 30px;
+            cursor: default;
+        }
+
+
+        .report-section h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-transform: none; /* Removido o maiúsculo forçado */
+        }
+
+        .report-section h3 {
+            margin-top: 25px;
+            color: var(--accent);
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .report-section p {
+            text-align: justify;
+            line-height: 1.6;
+            text-indent: 2em; 
+            margin-bottom: 10px;
+        }
+
+        .analogia-box {
+            background: rgba(var(--accent-rgb), 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            text-indent: 0;
+        }
+
+.report-section ul {
+    list-style: none; /* Remove os pontos */
+    padding-left: 0;
+}
+
+.report-section li {
+    margin-bottom: 25px; /* Espaço entre os blocos de texto */
+    line-height: 1.7;    /* Melhora a leitura das linhas */
+}
+
+.report-section li strong {
+    display: block;      /* Faz o título ficar em cima do texto */
+    margin-bottom: 5px;  /* Espaço entre o título colorido e a descrição */
+}
+/* Estilo de Tabela padrão ABNT */
+.table-container {
+        width: 100%;
+        overflow-x: auto; /* Ativa a barra de rolagem lateral */
+        display: block;
+        -webkit-overflow-scrolling: touch; /* Deixa o deslize suave no iPhone/Android */
+        margin: 20px 0;
+        cursor : grab
+    }
+
+.table-container.dragging {
+    cursor: grabbing;
+}
+
+    .table-abnt {
+        width: 100%;
+        min-width: 650px; /* IMPORTANTE: Impede a tabela de esmagar o texto */
+        border-collapse: collapse;
+    }
+
+    .table-abnt caption {
+        text-align: left;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .table-abnt th {
+        border-top: 2px solid var(--text-main);
+        border-bottom: 1px solid var(--text-main);
+        padding: 15px;
+        text-align: left;
+    }
+
+    .table-abnt td {
+        padding: 8px;
+        border-bottom: 1px solid var(--border-color); /* Linhas internas leves */
+    }
+
+    .table-abnt tr:last-child td {
+        border-bottom: 2px solid var(--text-main); /* Linha final grossa */
+    }
+    
+    /* Estilizando a barrinha para ficar mais bonita (opcional) */
+    .table-container::-webkit-scrollbar {
+        height: 6px;
+    }
+    .table-container::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 10px;
+    }
+
+    .fonte-abnt {
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+    }
+
+.referencias-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .ref-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border-left: 4px solid var(--accent);
+        transition: 0.3s;
+    }
+
+    .ref-item:hover {
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .ref-item p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-color);
+        padding-right: 20px;
+        text-align: left;
+    }
+
+    .ref-btn {
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.3s;
+    }
+
+    .ref-btn:hover {
+        background: var(--accent);
+        transform: translateX(5px);
+    }
+/* 1. ESTRUTURA E BOTÃO PÍLULA */
+.nav-item-details {
+    position: relative;
+    list-style: none;
+}
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 6px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(127, 127, 127, 0.4);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    background: rgba(127, 127, 127, 0.1);
+    transition: 0.3s;
+    user-select: none;
+}
+
+details summary::-webkit-details-marker { display: none; }
+
+.dropdown-content {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    
+    /* Altura máxima baseada na tela do usuário para não cortar */
+    max-height: 70vh; 
+    
+    /* Scroll automático: só aparece barra se o conteúdo não couber */
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    
+    border-radius: 12px;
+    z-index: 999999 !important;
+    padding: 8px 0;
+    
+    /* Impede que o navegador tente arrastar o menu como objeto */
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Garante que os links ocupem espaço para o scroll horizontal */
+.dropdown-content a {
+    display: block;
+    padding: 12px 20px;
+    min-width: max-content; 
+    cursor: pointer;
+}
+.dropdown-content a:hover {
+    background-color: var(--accent);
+    color: white !important;
+}
+
+/* 3. CORES - MODO ESCURO (Padrão) */
+.dropdown-content {
+    background-color: #1e1e1e !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-content a {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 4. CORES - MODO CLARO (Quando NÃO tem a classe .dark-mode) */
+body:not(.dark-mode) .dropdown-content {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark-mode) .dropdown-content a {
+    color: #1e1e1e !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* 5. SCROLLBAR CUSTOMIZADA */
+.dropdown-content::-webkit-scrollbar {
+    width: 8px;
+}
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+.dropdown-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+/* Estado padrão (fechado) */
+details summary .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease; /* Opcional: deixa a transição suave */
+}
+
+/* Quando o detalhes estiver aberto [open], troca o símbolo */
+details[open] summary .arrow {
+    content: ""; /* Reseta o conteúdo se necessário */
+}
+
+details[open] summary .arrow::before {
+    content: "▲";
+    position: absolute; /* Para sobrepor o anterior se necessário */
+}
+
+/* Forma mais simples e direta: */
+details summary::after {
+    content: " ▼"; /* Seta padrão */
+}
+
+details[open] summary::after {
+    content: " ▲"; /* Seta quando aberto */
+}
+    </style>
+</head>
+<body>
+    <div class="geometric-shape circle-1"></div>
+    <div class="geometric-shape circle-2"></div>
+    <div class="geometric-shape circle-3"></div>
+    <div class="geometric-shape square-1"></div>
+    <div class="geometric-shape square-2"></div>
+    <div class="geometric-shape triangle-1"></div>
+    <div class="geometric-shape triangle-2"></div>
+
+
+<nav>
+    <div class="container">
+        <ul>
+            <li><a href="../index.html">← Voltar</a></li>
+            <li class="nav-item-details">
+                <details id="sumario-dropdown">
+                    <summary>Sumário</summary>
+                    <div class="dropdown-content">
+                        <a href="#objetivo">1. Objetivo</a>
+                        <a href="#circulacao">2. Fluxo de Dados</a>
+                        <a href="#meios">3. Meios Físicos</a>
+                        <a href="#topologias">4. Topologias</a>
+                        <a href="#equipamentos">5. Equipamentos</a>
+                        <a href="#arquitetura">6. Arquitetura</a>
+                        <a href="#referencias">Referências</a>
+                    </div>
+                </details>
+            </li>
+            <li>
+                <li><button id="dark-mode-toggle" aria-label="Alternar Tema">
+                    <svg class="sun-outline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                    <svg class="sun-filled" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 00-1.41-1.41l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 00-1.41-1.41l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"></path>
+    </svg>
+            </li>
+        </ul>
+    </div>
+</nav>
+</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Modos e Métodos de Transmissão de Dados</h1>
+            <p class="subtitle">Relatório Técnico Acadêmico | ADS 2026</p>
+        </div>
+    </header>
+
+<section id="objetivo"></section>
+    <main class="container">
+        <article class="card report-section">
+            <h2>1. Objetivo</h2>
+            <p>O objetivo deste relatório é explicar, de forma clara e simplificada, como as informações são enviadas e recebidas entre computadores. Ao longo do texto, buscaremos entender os caminhos que os dados percorrem e como os aparelhos de rede ajudam a evitar 'engarrafamentos' digitais, garantindo que a conexão funcione de forma rápida e estável.</p>
+        </article>
+
+    <section id="circulacao"></section>
+        <article class="card report-section">
+            <h2>2. Como os dados circulam</h2>
+            <p>Para que dois aparelhos conversem, eles precisam seguir regras sobre quem fala e quem ouve. Podemos comparar o fluxo de dados ao trânsito de veículos: se não houver organização, as informações batem umas nas outras (o que chamamos de colisão) e a mensagem se perde. Existem três formas principais de organizar esse movimento:</p>
+            
+            <h3>Simplex:</h3>
+            <p>No modo Simplex, a transmissão é permanente em um único sentido. Não existe a possibilidade de retorno, pois o canal físico é desenhado para ser apenas uma saída ou uma entrada. Em termos técnicos, a largura de banda é totalmente dedicada a um único fluxo, o que é útil em sistemas de monitoramento ou sensores onde o feedback não é necessário.</p>
+            <div class="analogia-box"><strong>Analogia:</strong> É como um <strong>controle remoto</strong> ou uma <strong>rua de mão única</strong>. Você envia o comando para a TV e ela obedece, mas ela não consegue enviar informações de volta para o controle pelo mesmo caminho. O trânsito de dados só tem uma direção permitida.</div>
+
+            <h3>Half-Duplex:</h3>
+            <p>Neste método, a comunicação ocorre nos dois sentidos, porém nunca de forma simultânea. Isso acontece porque o canal é compartilhado para envio e recebimento. Se dois dispositivos tentarem transmitir ao mesmo tempo, as tensões elétricas (ou frequências) se sobrepõem, causando o que chamamos de colisão de dados, obrigando o sistema a descartar as informações e tentar novamente após um tempo aleatório.</p>
+            <div class="analogia-box"><strong>Analogia:</strong> É como uma <strong>ponte estreita</strong> de uma única faixa. Os carros podem ir para ambos os lados, mas apenas um por vez. Se dois tentarem passar juntos, ocorre uma colisão. É necessário esperar o caminho ficar livre para seguir.</div>
+
+            <h3>Full-Duplex:</h3>
+            <p>Este é o padrão das redes de alta performance. O modo Full-Duplex utiliza caminhos físicos ou lógicos separados: um par de fios (ou frequência) para enviar e outro par para receber. Isso elimina totalmente as colisões e permite que a largura de banda seja aproveitada ao máximo em ambas as direções ao mesmo tempo, algo essencial para o tráfego de voz e vídeo em tempo real.</p>
+            <div class="analogia-box"><strong>Analogia:</strong> Funciona como uma <strong>rodovia de pista dupla</strong>. Existem faixas exclusivas para quem vai e para quem vem. O fluxo de dados é contínuo e independente, garantindo que o trânsito nunca precise parar para o outro sentido passar.</div>
+
+<div class="table-container">
+    <table class="table-abnt">
+        <caption>Tabela  – Modos de Transmissão e Direção do Fluxo de Dados</caption>
+        <thead>
+            <tr>
+                <th>Modo de Transmissão</th>
+                <th>Direção do Fluxo</th>
+                <th>Exemplo Prático</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Simplex</strong></td>
+                <td>Unidirecional (apenas um envia, outro apenas recebe).</td>
+                <td>Televisão, Rádio, Controle Remoto.</td>
+            </tr>
+            <tr>
+                <td><strong>Half-Duplex</strong></td>
+                <td>Bidirecional, mas não simultâneo (um de cada vez).</td>
+                <td>Walkie-talkie, Redes Wi-Fi antigas.</td>
+            </tr>
+            <tr>
+                <td><strong>Full-Duplex</strong></td>
+                <td>Bidirecional e simultâneo (ambos enviam e recebem ao mesmo tempo).</td>
+                <td>Telefone, Internet moderna (Fibra ótica).</td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+    </div>
+     </article>
+
+<section id="meios"></section>
+<article class="card report-section">
+        <h2>3. Meios de Transmissão (Físicos)</h2>
+        <p>Além do modo como os dados fluem, o "caminho" físico percorrido pela informação é um fator determinante para a qualidade, velocidade e alcance da conexão. Existem diferentes tipos de condutores, cada um com vantagens específicas para diferentes cenários.</p>
+        <p></p>
+        <ul>
+            <li>
+                <h3><strong style="color: var(--accent);">Cabos de Par Trançado (UTP):</strong></h3>
+                É o padrão das redes locais (LAN). Os fios são trançados em pares para cancelar interferências eletromagnéticas externas, sendo uma solução de baixo custo e alta eficiência para curtas distâncias.
+            </li>
+
+            <li>
+                <h3><strong style="color: var(--accent);">Fibra Óptica:</strong></h3>
+                Transmite dados através de pulsos de luz em vez de eletricidade. Por não sofrer interferência elétrica, alcança distâncias enormes e velocidades de transmissão muito superiores aos cabos de metal.
+            </li>
+            <li>
+                <h3><strong style="color: var(--accent);">Ondas de Rádio:</strong></h3>
+                Representa o meio para conexões sem fio (Wireless). O sinal se propaga pelo ar, oferecendo mobilidade, porém sendo mais suscetível a barreiras físicas (como paredes) e interferências de outros aparelhos eletrônicos.
+            </li>
+        </ul>
+    </article>
+
+<section id="topologias"></section>
+    <article class="card report-section">
+        <h2>4. Topologias de Rede</h2>
+        <p>A topologia define a estrutura lógica e física de como os dispositivos estão interconectados. A escolha da topologia correta influencia na facilidade de expansão da rede e na sua capacidade de continuar funcionando caso um cabo se rompa.</p>
+
+
+        <ul>
+            <h3><strong style="color: var(--accent);">Barramento (Bus):</strong></h3> 
+            <p>Todos os nós são conectados a um único cabo central compartilhado. É simples e barata, mas se o cabo central falhar, toda a rede para.</p>
+            
+            <h3><strong style="color: var(--accent);">Anel (Ring):</strong></h3>
+            <p>Cada dispositivo se liga aos seus dois vizinhos próximos, formando um círculo. O dado passa de máquina em máquina até chegar ao destino.</p>
+
+            <h3><strong style="color: var(--accent);">Estrela (Star):</strong></h3>
+            <p>Todos os computadores se ligam a um ponto central (Switch). Se um cabo falha, apenas aquela máquina cai, o que torna a manutenção muito mais simples.</p>
+
+            <h3><strong style="color: var(--accent);">Malha (Mesh):</strong></h3>
+            <p>Os dispositivos possuem múltiplas conexões entre si. É a base da Internet: se um caminho estiver bloqueado, o dado encontra outra rota automaticamente.</p>
+
+            <h3><strong style="color: var(--accent);">Híbrida:</strong></h3>
+            <p>É a união de dois ou mais modelos anteriores, muito utilizada em grandes empresas para aproveitar o melhor de cada estrutura.</p>
+        </ul>
+
+        <div class="analogia-box">
+            <strong>Analogia:</strong> 
+            O <strong>Barramento</strong> é como um varal de roupas. 
+            O <strong>Anel</strong> é uma ciranda de crianças. 
+            A <strong>Estrela</strong> funciona como os raios de uma roda de bicicleta. 
+            A <strong>Malha</strong> é como uma rede de pesca: um fio rompido não destrói a rede toda.
+        </div>
+    </article>
+<section id="equipamentos"></section>
+<article class="card report-section">
+    <h2>5. Os "Ajudantes" da Rede (Equipamentos)</h2>
+    <p>Para que os modos de transmissão e as topologias funcionem na prática, utilizamos hardwares específicos. A "inteligência" desses aparelhos define se a rede será lenta e congestionada ou rápida e eficiente.</p>
+
+    <div class="equipment-item">
+        <h3><strong style="color: var(--accent);">Hub (O "Repetidor"):</strong></h3>
+        <p>É um aparelho legado e limitado. Ele não filtra para onde a informação deve ir; quando recebe um dado, ele o replica para todas as suas portas simultaneamente. Isso gera um alto índice de colisões e obriga a rede a trabalhar em <strong>Half-Duplex</strong>.</p>
+        <div class="analogia-box">
+            <strong>Analogia:</strong> 
+            <em>É como alguém gritando em uma sala cheia; todos ouvem, mesmo quem não deveria (Gera confusão).</em>
+        </div>
+    </div>
+
+    <div class="equipment-item">
+        <h3><strong style="color: var(--accent);">Switch (O "Inteligente"):</strong></h3>
+        <p>Diferente do Hub, o Switch aprende os endereços físicos (MAC) de cada aparelho conectado. Ele cria um canal exclusivo e temporário entre o transmissor e o receptor, permitindo que vários pares de computadores conversem ao mesmo tempo em <strong>Full-Duplex</strong>.</p>
+        <div class="analogia-box">
+            <strong>Analogia:</strong> 
+            <em>É como um telefonema particular; a mensagem vai direto para quem interessa (Privacidade e eficiência).</em>
+        </div>
+    </div>
+
+    <div class="equipment-item">
+        <h3><strong style="color: var(--accent);">Roteador (O "GPS"):</strong></h3>
+        <p>Sua função principal é interconectar redes diferentes (como a sua rede local e a Internet). Ele analisa o endereço lógico (IP) para decidir a melhor rota que o dado deve seguir para chegar ao destino fora da rede de origem.</p>
+        <div class="analogia-box">
+            <strong>Analogia:</strong> 
+            <em>É como o sistema de correios; ele decide se o dado fica no seu bairro (Rede Local) ou vai para outro país (Internet).</em>
+        </div>
+    </div>
+
+    <div class="equipment-item">
+        <h3><strong style="color: var(--accent);">Modem (O "Tradutor"):</strong></h3>
+        <p>Converte o sinal que vem do provedor (fibra, cabo ou telefone) em sinal digital que os seus aparelhos conseguem entender. É a porta de entrada da internet na sua rede.</p>
+        <div class="analogia-box">
+            <strong>Analogia:</strong> 
+            <em>É o intérprete de idiomas; ele traduz a língua que vem da rua (Sinal da Operadora) para a língua que seus aparelhos entendem (Digital).</em>
+        </div>
+    </div>
+
+    
+<div class="table-container">
+    <table class="table-abnt">
+        <caption>Tabela 2 – Comparativo Técnico de Equipamentos de Rede</caption>
+        <thead>
+            <tr>
+                <th>Equipamento</th>
+                <th>Função Principal</th>
+                <th>Modo</th>
+                <th>Endereçamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Hub</strong></td>
+                <td>Replica dados para todos.</td>
+                <td>Half-Duplex</td>
+                <td>Nenhum (Camada 1)</td>
+            </tr>
+            <tr>
+                <td><strong>Switch</strong></td>
+                <td>Envia direto ao destino.</td>
+                <td>Full-Duplex</td>
+                <td>Físico (MAC)</td>
+            </tr>
+            <tr>
+                <td><strong>Roteador</strong></td>
+                <td>Conecta redes e define rotas.</td>
+                <td>Full-Duplex</td>
+                <td>Lógico (IP)</td>
+            </tr>
+            <tr>
+                <td><strong>Modem</strong></td>
+                <td>Traduz o sinal da internet.</td>
+                <td>Full-Duplex</td>
+                <td>Sinal Digital</td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+</div>
+
+</article>
+<section id="arquitetura"></section>
+    <article class="card report-section">
+    <h2>6. Arquitetura de Redes: Modelos de Referência</h2>
+    <p>A arquitetura de redes moderna utiliza um sistema de camadas para organizar a comunicação. Isso permite que tecnologias diferentes trabalhem juntas de forma transparente.</p>
+    <ul>
+        <li>
+            <h3><strong style="color: var(--accent);">Modelo OSI (7 camadas):</strong></h3>
+            Utilizado principalmente para fins didáticos, ele detalha minuciosamente cada etapa da comunicação, desde a voltagem do cabo até a interface do software.
+        </li>
+        <li>
+            <h3><strong style="color: var(--accent);">Modelo TCP/IP (4 camadas):</strong></h3>
+            É o padrão prático utilizado na Internet. Ele simplifica as camadas do OSI para tornar a comunicação mais ágil e eficiente no dia a dia.
+        </li>
+    </ul>
+
+<div class="table-container">
+    <table class="table-abnt">
+        <caption>Tabela 3 – Camadas do Modelo de Referência TCP/IP</caption>
+        <thead>
+            <tr>
+                <th style="width: 30%;">Camada TCP/IP</th>
+                <th style="width: 70%;">Função Principal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Aplicação</strong></td>
+                <td>Interface direta com o usuário e programas (Navegador, E-mail, HTTP, FTP).</td>
+            </tr>
+            <tr>
+                <td><strong>Transporte</strong></td>
+                <td>Garante que os dados cheguem sem erros e na ordem certa (TCP e UDP).</td>
+            </tr>
+            <tr>
+                <td><strong>Internet</strong></td>
+                <td>Responsável pelo endereçamento lógico (IP) e por encontrar a melhor rota.</td>
+            </tr>
+            <tr>
+                <td><strong>Acesso à Rede</strong></td>
+                <td>Transforma os dados em sinais físicos que viajam pelo cabo ou Wi-Fi.</td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+</div>
+
+    <div class="analogia-box">
+        <strong>Analogia:</strong> Pense no envio de uma encomenda internacional. 
+        A <strong>Aplicação</strong> é o conteúdo do seu presente. 
+        O <strong>Transporte</strong> é a caixa e o plástico bolha. 
+        A <strong>Internet</strong> é a etiqueta com o endereço. 
+        O <strong>Acesso à Rede</strong> é o caminhão ou avião que transporta fisicamente a caixa.
+    </div>
+</article>
+
+<article class="card report-section">
+<h2>Conclusão</h2>
+    <p>A evolução dos equipamentos de rede mostra como saímos da simples distribuição de sinal dos <strong>Hubs</strong> para a inteligência dos <strong>Switches</strong> e <strong>Roteadores</strong>. Uma mudança como essa foi essencial para organizar o tráfego de dados, evitar falhas de comunicação e permitir que a internet funcione de forma estável através do modelo <strong>TCP/IP</strong>.</p>
+    
+    <p>Entender esse percurso dos dados desde o cabo físico até os aplicativos que usamos facilita a identificação de problemas e o planejamento de redes mais rápidas. Na prática, o bom desempenho de uma conexão depende da escolha certa dos aparelhos e de como as regras de transmissão são aplicadas no dia a dia.</p>
+</section>
+
+<section id="referencias">
+    <h2>Referências Bibliográficas</h2>
+    <div class="referencias-content">
+        <div class="ref-item">
+            <p>NUNES, Sergio Eduardo. <strong>Redes de computadores</strong>. Londrina: Editora e Distribuidora Educacional S.A., 2017. 200 p.</p>
+        </div>
+
+        <div class="ref-item">
+            <p>ADEMI. <strong>Dispositivos de Rede</strong>: hub, switch, roteador e modem. Disponível em: ademi.com.br</p>
+            <a href="https://ademi.com.br/dispositivos-de-rede-entenda-as-diferencas-entre-hub-switch-roteador-e-modem-e-suas-funcoes-na-infraestrutura-de-conectividade" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>ADEMI. <strong>Diferenças entre comunicação simplex, half e full-duplex</strong>. Disponível em: ademi.com.br</p>
+            <a href="https://ademi.com.br/entenda-as-diferencas-cruciais-entre-comunicacao-simplex-half-duplex-e-full-duplex-guia-tecnico-completo-para-profissionais-de-rede" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>ALVES, Edu. <strong>Sistemas simplex, half-duplex e full-duplex</strong>. Disponível em: webnode.pt</p>
+            <a href="https://edu-alves2.webnode.pt/modulo-1/sistemas-simplex-half-duplex-e-full-duplex/" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>BLOG TRYBE. <strong>Topologias de rede</strong>: o que são e principais tipos. Disponível em: betrybe.com</p>
+            <a href="https://blog.betrybe.com/tecnologia/topologias-de-rede/" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>IMPRESCINDÍVEL TI. <strong>Meios de transmissão em redes</strong>. Disponível em: imprescindivelti.com.br</p>
+            <a href="https://www.imprescindivelti.com.br/2026/02/meios-de-transmissao-em-redes-de_01441363436.html" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>PORTAL INSIGHTS. <strong>Modelos de referência utilizados para redes</strong>. Disponível em: portalinsights.com.br</p>
+            <a href="https://www.portalinsights.com.br/perguntas-frequentes/quais-os-modelos-de-referencia-utilizados-para-redes" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>WIKIPÉDIA. <strong>Topologia de rede</strong>. Disponível em: wikipedia.org</p>
+            <a href="https://pt.wikipedia.org/wiki/Topologia_de_rede" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+
+        <div class="ref-item">
+            <p>WIKIVERSITY. <strong>Meios físicos de transmissão</strong>. Disponível em: wikiversity.org</p>
+            <a href="https://pt.wikiversity.org/wiki/Introdu%C3%A7%C3%A3o_%C3%A0s_Redes_de_Computadores/Meios_f%C3%ADsicos_de_transmiss%C3%A3o" target="_blank" class="ref-btn">Acessar <span>➔</span></a>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Murilo Guimarães. Acadêmico de ADS.</p>
+    </footer>
+    <button id="back-to-top" title="Voltar ao topo">↑</button>
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Redes | Murilo Guimarães</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { padding-top: 0px; display: block !important; }
@@ -16,7 +17,6 @@
             align-items: center;
             text-align: center;
             padding: 80px 20px 40px;
-            will-change: transform;
             transform: translateZ(0);
         }
         header h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); margin: 0; color: var(--accent); text-transform: none; }
@@ -42,7 +42,6 @@
             -webkit-overflow-scrolling: touch;
             margin: 20px 0;
             cursor: grab;
-            will-change: scroll-position;
         }
         .table-container.dragging { cursor: grabbing; }
         .table-abnt { width: 100%; min-width: 650px; border-collapse: collapse; }
@@ -265,15 +264,15 @@
                 <p>O caminho físico percorrido pela informação determina a qualidade, velocidade e alcance da conexão.</p>
                 <ul>
                     <li>
-                        <strong>Cabos de Par Trançado (UTP):</strong>
+                        <h3><strong>Cabos de Par Trançado (UTP):</strong></h3>
                         Padrão das redes locais (LAN). Os fios são trançados em pares para cancelar interferências eletromagnéticas.
                     </li>
                     <li>
-                        <strong>Fibra Óptica:</strong>
+                        <h3><strong>Fibra Óptica:</strong></h3>
                         Transmite dados através de pulsos de luz. Não sofre interferência elétrica e alcança grandes distâncias e velocidades.
                     </li>
                     <li>
-                        <strong>Ondas de Rádio:</strong>
+                        <h3><strong>Ondas de Rádio:</strong></h3>
                         Meio para conexões sem fio (Wireless). Propaga-se pelo ar, oferecendo mobilidade, mas com maior sensibilidade a barreiras físicas.
                     </li>
                 </ul>
@@ -287,23 +286,23 @@
                 
                 <ul>
                     <li>
-                        <strong style="color: var(--accent);">Barramento (Bus):</strong> 
+                        <h3><strong style="color: var(--accent);">Barramento (Bus):</strong></h3>
                         Todos os nós são conectados a um único cabo central compartilhado. É simples e barata, mas se o cabo central falhar, toda a rede para.
                     </li>
                     <li>
-                        <strong style="color: var(--accent);">Anel (Ring):</strong>
+                        <h3><strong style="color: var(--accent);">Anel (Ring):</strong></h3>
                         Cada dispositivo se liga aos seus dois vizinhos próximos, formando um círculo. O dado passa de máquina em máquina até chegar ao destino.
                     </li>
                     <li>
-                        <strong style="color: var(--accent);">Estrela (Star):</strong>
+                        <h3><strong style="color: var(--accent);">Estrela (Star):</strong></h3>
                         Todos os computadores se ligam a um ponto central (Switch). Se um cabo falha, apenas aquela máquina cai, facilitando a manutenção.
                     </li>
                     <li>
-                        <strong style="color: var(--accent);">Malha (Mesh):</strong>
+                        <h3><strong style="color: var(--accent);">Malha (Mesh):</strong></h3>
                         Os dispositivos possuem múltiplas conexões entre si. É a base da Internet: se um caminho estiver bloqueado, o dado encontra outra rota automaticamente.
                     </li>
                     <li>
-                        <strong style="color: var(--accent);">Híbrida:</strong>
+                        <h3><strong style="color: var(--accent);">Híbrida:</strong></h3>
                         É a união de dois ou mais modelos anteriores, permitindo aproveitar o melhor de cada estrutura em grandes redes.
                     </li>
                 </ul>
@@ -395,11 +394,11 @@
                     <p>A arquitetura de redes moderna utiliza um sistema de camadas para organizar a comunicação, permitindo que tecnologias diferentes trabalhem juntas de forma transparente.</p>
                     <ul>
                         <li>
-                            <strong style="color: var(--accent);">Modelo OSI (7 camadas):</strong>
+                            <h3><strong style="color: var(--accent);">Modelo OSI (7 camadas):</strong></h3>
                             Utilizado para fins didáticos, detalha cada etapa da comunicação, da voltagem do cabo à interface do software.
                         </li>
                         <li>
-                            <strong style="color: var(--accent);">Modelo TCP/IP (4 camadas):</strong>
+                            <h3><strong style="color: var(--accent);">Modelo TCP/IP (4 camadas):</strong></h3>
                             Padrão prático da Internet, simplifica as camadas para tornar a comunicação ágil e eficiente.
                         </li>
                     </ul>
@@ -447,7 +446,7 @@
 
         <article class="card report-section">
                 <h2>Conclusão</h2>
-                <p>A evolução dos equipamentos de rede mostra como saímos da simples distribuição de sinal dos <strong>Hubs</strong> para a inteligência dos <strong>Switches</strong> e <strong>Roteadores</strong>. Essa transição foi essencial para organizar o tráfego de dados, evitar falhas e permitir que a internet funcione de forma estável através do modelo <strong>TCP/IP</strong>.</p>
+                <p>A evolução dos equipamentos de rede mostra como saímos da simples distribuição de sinal dos <strong>Hubs</strong> para a inteligência dos <strong>Switches</strong> e <strong>Roteadores</strong>. Uma trânsição como essa foi essêncial para organizar o tráfego de dados, evitar falhas e permitir que a internet funcione de forma estável através do modelo <strong>TCP/IP</strong>.</p>
                 <p>Entender o percurso dos dados, desde o cabo físico até os aplicativos, facilita a identificação de problemas e o planejamento de infraestruturas eficientes. O bom desempenho de uma conexão depende diretamente da escolha correta dos aparelhos e da aplicação adequada das regras de transmissão.</p>
             </article>
         </section>

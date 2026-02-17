@@ -115,7 +115,6 @@ header {
     transition: background 0.8s ease;
     position: relative;
     overflow: hidden;
-    will-change: transform, opacity;
     transform: translateZ(0);
 }
 
@@ -372,7 +371,6 @@ section {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease-out;
-    will-change: transform, opacity;
 }
 
 section.visible {
@@ -560,7 +558,6 @@ footer { text-align: center; padding: 40px; font-size: 0.8rem; opacity: 0.6; }
     background-color: var(--accent);
     animation: zeroGravity 20s linear infinite;
     transition: background-color 0.8s ease, opacity 0.8s ease;
-    will-change: transform;
     transform: translateZ(0);
 }
 

@@ -1,8 +1,9 @@
 const body = document.body;
 const btnDark = document.getElementById('dark-mode-toggle');
 const nameTitle = document.querySelector('h1');
+const backToTop = document.getElementById('back-to-top');
 
-// --- MODO ESCURO ---
+// --- 1. MODO ESCURO ---
 if (localStorage.getItem('dark-mode') === 'enabled') {
     body.classList.add('dark-mode');
 }
@@ -10,13 +11,13 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
 btnDark?.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     if (nameTitle) {
-        nameTitle.style.transform = 'scale(1)';
+        nameTitle.style.transform = 'scale(1.02)';
         setTimeout(() => nameTitle.style.transform = 'scale(1)', 150);
     }
     localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
 });
 
-// --- NAVEGAÇÃO E SUMÁRIO ---
+// --- 2. NAVEGAÇÃO E SUMÁRIO ---
 const setupSumario = () => {
     const details = document.getElementById('sumario-dropdown');
     let isDraggingMenu = false;
@@ -48,7 +49,7 @@ const setupSumario = () => {
     });
 };
 
-// --- FILTROS DE PROJETOS ---
+// --- 3. FILTROS DE PROJETOS ---
 window.filterItems = function(category, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -60,31 +61,42 @@ window.filterItems = function(category, btn) {
     });
 };
 
-// --- EFEITOS DE SCROLL (PARALLAX E TOPO) ---
-const backToTop = document.getElementById('back-to-top');
+// --- 4. EFEITOS DE SCROLL OTIMIZADOS (PARALLAX E TOPO) ---
+let lastScrollY = window.scrollY;
+let isTicking = false;
 
 window.addEventListener('scroll', () => {
-    const headerContainer = document.querySelector('header .container');
-    const scrollValue = window.scrollY;
-    
-    if (headerContainer) {
-        const startMovingAt = window.innerWidth < 768 ? 150 : 50;
-        headerContainer.style.transform = scrollValue > startMovingAt 
-            ? `translateY(${(scrollValue - startMovingAt) * 0.3}px)` 
-            : `translateY(0px)`;
+    lastScrollY = window.scrollY;
+
+    if (!isTicking) {
+        window.requestAnimationFrame(() => {
+            const headerContainer = document.querySelector('header .container');
+            
+            if (headerContainer) {
+                // Só processa o parallax se estiver nas primeiras 500px de scroll
+                if (lastScrollY < 500) {
+                    const startMovingAt = window.innerWidth < 768 ? 150 : 50;
+                    const yPos = lastScrollY > startMovingAt ? (lastScrollY - startMovingAt) * 0.3 : 0;
+                    headerContainer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                }
+            }
+
+            if (backToTop) {
+                backToTop.style.display = lastScrollY > 300 ? "flex" : "none";
+            }
+            
+            isTicking = false;
+        });
+        isTicking = true;
     }
-    
-    if (backToTop) {
-        backToTop.style.display = scrollValue > 300 ? "flex" : "none";
-    }
-});
+}, { passive: true });
 
 backToTop?.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// --- CONTROLE DE EXPANSÃO DE CARDS ---
+// --- 5. CONTROLE DE EXPANSÃO DE CARDS ---
 const updateBtnStyle = (btn, isOpen) => {
     if (!btn) return;
     btn.innerHTML = isOpen ? 'Fechar <span>▲</span>' : 'Detalhes <span>▼</span>';
@@ -114,7 +126,7 @@ window.toggleAll = function() {
     if (masterBtn) masterBtn.innerText = anyClosed ? 'Recolher Tudo' : 'Expandir Tudo';
 };
 
-// --- SCROLL DRAG PARA SLIDERS, TABELAS E DROPDOWNS ---
+// --- 6. SCROLL DRAG PARA SLIDERS E TABELAS ---
 const scrollContainers = document.querySelectorAll('.slider, .table-container, .dropdown-content');
 
 scrollContainers.forEach(container => {
@@ -151,7 +163,7 @@ scrollContainers.forEach(container => {
     });
 });
 
-// --- ANIMAÇÕES DE ENTRADA ---
+// --- 7. ANIMAÇÕES DE ENTRADA ---
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');

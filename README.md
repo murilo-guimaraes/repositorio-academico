@@ -10,15 +10,15 @@ Website pessoal desenvolvido para centralizar a trajetória estudantil, projetos
 O projeto está publicado em:  
 **[murilo-guimaraes.github.io/website-portfolio/](https://murilo-guimaraes.github.io/website-portfolio/)**
 
-> **Nota:** Interface em constante desenvolvimento. Feedbacks e sugestões são bem-vindos.
+> **Nota:** Interface em constante desenvolvimento. Feedbacks e sugestões são bem-vindos!
 
 ---
 
 ## Atualizações Recentes
-### Versão v16.2.26
+### Versão v17.2.26
 Foco em polimento de interface e estabilidade do sistema:
 
-* **Navegação**: Ajuste na fluidez do carrossel (Mouse Drag) e navegação por abas.
+* **Navegação**: Ajuste na fluidez do carrossel (Mouse Drag) e navegação otimizada.
 * **Interatividade**: Implementação de cards expansíveis com indicadores de estado (▼/▲).
 * **Componentes**: Adição de sumário inteligente e badges de status para projetos (FINALIZADO, EM ANDAMENTO, PLANEJADO).
 * **Interface**: Refinação de tipografia e transição entre temas Light/Dark.

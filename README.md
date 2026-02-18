@@ -15,27 +15,29 @@ O projeto está publicado em:
 ---
 
 ## Atualizações Recentes
-### Versão v17.2.26
+### Versão v18.2.26
 Foco em polimento de interface e estabilidade do sistema:
 
-* **Navegação**: Ajuste na fluidez do carrossel (Mouse Drag) e navegação otimizada.
-* **Interatividade**: Implementação de cards expansíveis com indicadores de estado (▼/▲).
-* **Componentes**: Adição de sumário inteligente e badges de status para projetos (FINALIZADO, EM ANDAMENTO, PLANEJADO).
-* **Interface**: Refinação de tipografia e transição entre temas Light/Dark.
-
+* **Teste de Renderização Técnica**: Implementação experimental do relatório de **Algoritmos** para validar a exibição de blocos de código semânticos (`<code>`) e tabelas técnicas sob as normas ABNT.
+* **Protótipo de Evidências Visuais**: Teste de integração de mídias externas com foco em performance e responsividade, utilizando capturas reais de compiladores e terminais.
+* **Validação de Fluxo**: Uso da seção de algoritmos para testar o novo sistema de **Sumário Inteligente** e navegação por âncoras dentro de páginas de pesquisa.
+* **Refatoração de Ambiente**: Migração para controle de versão via **Git**, garantindo integridade no histórico de desenvolvimento e correções de bugs em tempo real.
 ---
 
 ## Funcionalidades e Tecnologias
 * **Dual Mode**: Suporte a temas dinâmicos via Variáveis CSS.
 * **Design Responsivo**: Layout adaptável utilizando Flexbox e Grid.
 * **Desenvolvimento Native**: Lógica de interface e manipulação de DOM construída com JavaScript puro (ES6).
-
 ---
 
 ## Estrutura de Arquivos
 ```text
 ├── Pesquisas/
-│   └── redes.html     # Relatórios técnicos e estudos de infraestrutura
-├── index.html         # Ponto de entrada principal
-├── script.js          # Lógica de interatividade e carrossel
-└── style.css          # Estilização global e definições de tema
+│   ├── Algoritmos e Programação Estruturada/
+│   │   ├── Imagens/         # Evidências de código e terminal
+│   │   └── algoritmos.html  # Relatório técnico de variáveis e memória
+│   └── Redes de Computadores/
+│       └── redes.html       # Estudos de infraestrutura
+├── index.html               # Ponto de entrada principal
+├── script.js                # Lógica de interatividade e carrossel
+└── style.css                # Estilização global e definições de tema

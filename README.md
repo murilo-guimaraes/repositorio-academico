@@ -21,7 +21,7 @@ Foco em polimento de interface e estabilidade do sistema:
 * **Teste de Renderização Técnica**: Implementação experimental do relatório de **Algoritmos** para validar a exibição de blocos de código semânticos (`<code>`) e tabelas técnicas sob as normas ABNT.
 * **Protótipo de Evidências Visuais**: Teste de integração de mídias externas com foco em performance e responsividade, utilizando capturas reais de compiladores e terminais.
 * **Validação de Fluxo**: Uso da seção de algoritmos para testar o novo sistema de **Sumário Inteligente** e navegação por âncoras dentro de páginas de pesquisa.
-* **Refatoração de Ambiente**: Migração para controle de versão via **Git**, garantindo integridade no histórico de desenvolvimento e correções de bugs em tempo real.
+
 ---
 
 ## Funcionalidades e Tecnologias

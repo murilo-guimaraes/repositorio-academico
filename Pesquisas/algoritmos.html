@@ -18,8 +18,9 @@
             text-align: center;
             padding: 80px 20px 40px;
             transform: translateZ(0);
-            
         }
+        code { background-color: rgba(0, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px; font-family: monospace; border: 1px solid #ccc; }   
+
         header h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); margin: 0; color: var(--accent); text-transform: none; }
         .report-section { margin-bottom: 30px; cursor: default; }
         .report-section h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; text-transform: none; }
@@ -138,8 +139,6 @@
             background-color: var(--primary) !important;
             color: var(--white) !important; 
         }
-
-
         body:not(.dark-mode) .dropdown-content a {
             color: #1a1a1a !important; 
         }
@@ -158,22 +157,55 @@
             text-align: center;
             margin: 20px 0;
             padding: 10px;
-            background-color: #1e1e1e; /* Fundo escuro combinando com o VS Code */
+            background-color: rgba(0, 0, 0, 0.2);
             border-radius: 8px;
-            border: 1px solid #333;
+            border: 1px var(--primary);
         }
         .img-relatorio {
-            max-width: 100%; /* Garante que a imagem não ultrapasse o card */
+            max-width: 100%; 
             height: auto;
             border-radius: 4px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 12px rgba(0,0,0,1);
         }
         .legenda {
             font-size: 0.9rem;
-            color: #888;
+            color: var(--text);
             margin-top: 10px;
             font-style: italic;
         }
+
+        .btn-colab {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color:rgba(0,0,0,0.2);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            border: 1px var(--accent); 
+            transition: 0.3s;
+        }
+        .btn-colab:hover {
+            background-color: orange;
+            color: #1e1e1e;
+        }
+        .icon-colab {
+            width: 20px; 
+            height: 20px;
+        }
+        .icon-wrapper {
+            background-color:rgba(0, 0, 0, 0.5); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            padding: 4px;
+        }
+        
     </style>
 </head>
 <body>
@@ -195,10 +227,10 @@
                         <div class="dropdown-content">
                             <a href="#objetivos">1. Objetivo</a>
                             <a href="#introducao">2. Introdução</a>
-                            <a href="#metodologia">3. Metodologia</a>
-                            <a href="#ciclo">4. Ciclo de Vida</a>
-                            <a href="#dados">5. Dados Obtidos</a>
-                            <a href="#especificadores">6. Especificadores</a>
+                            <a href="#ciclo">3. Ciclo de Vida</a>
+                            <a href="#metodologia">4. Metodologia</a>
+                            <a href="#especificadores">5. Especificadores</a>
+                            <a href="#dados">6. Dados Obtidos</a>
                             <a href="#exercicios">7. Exercícios</a>
                             <a href="#conclusao">8. Conclusão</a>
                             <a href="#referencias">Referências</a>
@@ -268,9 +300,20 @@
             </article>
         </section>
 
+        <section id="ciclo">
+    <article class="card report-section">
+        <h2>3. Ciclo de Vida e Escopo de Dados</h2>
+        <p>A alocação de variáveis em C segue regras rígidas de escopo que determinam sua visibilidade e permanência na memória RAM:</p>
+        <ul>
+            <li><h3><strong style="color: var(--accent);">Variáveis Locais:</strong></h3> Alocadas na <em>Stack</em> (pilha), existem apenas enquanto o bloco de código (função) está ativo.</li>
+            <li><h3><strong style="color: var(--accent);">Variáveis Globais:</strong></h3> Alocadas no segmento de dados, permanecem vivas durante toda a execução do programa.</li>
+            <li><h3><strong style="color: var(--accent);">Lixo de Memória:</strong></h3> Variáveis não inicializadas contêm valores residuais de acessos anteriores.</li>
+        </ul>
+    </article>
+</section>
         <section id="metodologia">
             <article class="card report-section">
-                <h2>3. Metodologia</h2>
+                <h2>4. Metodologia</h2>
                 <p> A atividade foi dividida em leitura teórica e experimentação em compilador. Utilizou-se o comando sizeof para validar o espaço físico ocupado por cada tipo de dado, além de testes com especificadores de formato (<code>%d</code>, <code>%f</code>, <code>%c</code>) nas funções de entrada e saída (<code>scanf</code> e <code>printf</code>).</p>
              
             <p>
@@ -284,27 +327,42 @@
             </p>
 
         <div class="foto-container">
-            <img src="Imagens/print-vscode.png" alt="Implementação do código em C" class="img-relatorio">
-            <p class="legenda">Figura 1: Implementação do código-fonte e organização de arquivos no VS Code.</p>
+            <img src="Imagens/Teste-dark.png" alt="Implementação do código em C" class="img-relatorio">
+            <p class="legenda">Figura 1: Execução do código de alocação de memória em C no Colaboratory.</p>
         </div>
     </article>
 </section>
 
-        <section id="ciclo">
+            <section id="especificadores">
     <article class="card report-section">
-        <h2>4. Ciclo de Vida e Escopo de Dados</h2>
-        <p>A alocação de variáveis em C segue regras rígidas de escopo que determinam sua visibilidade e permanência na memória RAM:</p>
-        <ul>
-            <li><h3><strong style="color: var(--accent);">Variáveis Locais:</strong></h3> Alocadas na <em>Stack</em> (pilha), existem apenas enquanto o bloco de código (função) está ativo.</li>
-            <li><h3><strong style="color: var(--accent);">Variáveis Globais:</strong></h3> Alocadas no segmento de dados, permanecem vivas durante toda a execução do programa.</li>
-            <li><h3><strong style="color: var(--accent);">Lixo de Memória:</strong></h3> Variáveis não inicializadas contêm valores residuais de acessos anteriores.</li>
-        </ul>
+        <h2>5. Comunicação via Especificadores</h2>
+        <p>Para que o hardware interprete os bits corretamente, utilizamos especificadores de formato nas funções <code>printf</code> e <code>scanf</code>:</p>
+        <div class="table-container">
+            <table class="table-abnt">
+                <caption>Tabela 2 - Especificadores de Formato em C</caption>
+                <thead>
+                    <tr>
+                        <th>Especificador</th>
+                        <th>Tipo Técnico</th>
+                        <th>Finalidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>%d</code></td><td>Integer</td><td>Processamento de números inteiros decimais.</td></tr>
+                    <tr><td><code>%f</code></td><td>Float</td><td>Representação de números reais de precisão simples.</td></tr>
+                    <tr><td><code>%c</code></td><td>Char</td><td>Leitura de um único caractere (ASCII).</td></tr>
+                    <tr><td><code>%p</code></td><td>Pointer</td><td>Exibição do endereço de memória hexadecimal.</td></tr>
+                </tbody>
+            </table>
+            <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
+        </div>
     </article>
 </section>
 
+
             <section id="dados">
                 <article class="card report-section">
-                    <h2>5. Dados Obtidos e Análise</h2>
+                    <h2>6. Dados Obtidos e Análise</h2>
                     <p>Abaixo, a síntese do espaço alocado para os tipos primitivos observados durante a prática, fundamentais para evitar o desperdício de memória em sistemas computacionais:</p>
 
                     <div class="table-container">
@@ -349,37 +407,24 @@
 
                   
                     <div class="foto-container">
-                        <img src="Imagens/print-terminal.png" alt="Implementação do código em C" class="img-relatorio">
+                        <img src="Imagens/Resultado-dark.png" alt="Implementação do código em C" class="img-relatorio">
                         <p class="legenda">Figura 2: Resultado da execução no terminal validando a alocação e o endereçamento físico.</p>
+                    </div>
+
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 20px;">
+                        <a href="https://drive.google.com/file/d/1JzkZfuqfnNm7Whwn8uIUx98bArYRV08T/view?usp=sharing" target="_blank" class="btn-colab">
+                            <span class="icon-wrapper">
+                                <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Ícone Colab" class="icon-colab">
+                            </span>
+                            Confira outros testes de memória no Google Colab!
+                        </a>
+                        
+                        <a href="ajuda-colab.html" style="color: var(--text); font-size: 0.85rem; opacity: 0.7; text-decoration: underline;">
+                            Problemas ao acessar? Clique aqui.
+                        </a>
                     </div>
                 </article>
             </section>
-
-            <section id="especificadores">
-    <article class="card report-section">
-        <h2>6. Comunicação via Especificadores</h2>
-        <p>Para que o hardware interprete os bits corretamente, utilizamos especificadores de formato nas funções <code>printf</code> e <code>scanf</code>:</p>
-        <div class="table-container">
-            <table class="table-abnt">
-                <caption>Tabela 2 - Especificadores de Formato em C</caption>
-                <thead>
-                    <tr>
-                        <th>Especificador</th>
-                        <th>Tipo Técnico</th>
-                        <th>Finalidade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><code>%d</code></td><td>Integer</td><td>Processamento de números inteiros decimais.</td></tr>
-                    <tr><td><code>%f</code></td><td>Float</td><td>Representação de números reais de precisão simples.</td></tr>
-                    <tr><td><code>%c</code></td><td>Char</td><td>Leitura de um único caractere (ASCII).</td></tr>
-                    <tr><td><code>%p</code></td><td>Pointer</td><td>Exibição do endereço de memória hexadecimal.</td></tr>
-                </tbody>
-            </table>
-            <span class="fonte-abnt">Fonte: Elaborado pelo autor (2026).</span>
-        </div>
-    </article>
-</section>
 
         <section id="exercicios">
         <article class="card report-section">

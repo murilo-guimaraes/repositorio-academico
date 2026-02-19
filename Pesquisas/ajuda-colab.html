@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda - Acesso ao Colab | Murilo Guimarães</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { padding-top: 0px; display: block !important; }
+        header {
+            min-height: 45vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px 40px;
+            transform: translateZ(0);
+        }
+        header h1 { font-size: clamp(2.2rem, 8vw, 3.8rem); margin: 0; color: var(--accent); text-transform: none; }
+        .report-section { margin-bottom: 30px; cursor: default; }
+        .report-section h2 { color: var(--accent); margin-bottom: 15px; font-size: 1.5rem; text-transform: none; }
+        .report-section h3 { margin-top: 25px; color: var(--accent); font-size: 1.2rem; opacity: 0.9; }
+        .report-section p { text-align: justify; line-height: 1.6; text-indent: 2em; margin-bottom: 10px; }
+        
+        .analogia-box {
+            background: rgba(var(--accent-rgb), 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            text-indent: 0;
+        }
+
+        .foto-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .img-relatorio {
+            max-width: 100%; 
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,1);
+        }
+        .legenda {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="javascript:history.back()">← Voltar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Guia de Acesso: Laboratório no Colab</h1>
+            <p class="subtitle">Instruções para Visualização e Execução | ADS 2026</p>
+            <div class="badges">
+                <span class="mini-tag">Google Colab</span>
+                <span class="mini-tag">Acesso Remoto</span>
+                <span class="mini-tag">Execução de Código</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="problemas">
+            <article class="card report-section">
+                <h2>1. Por que não consigo ver o código?</h2>
+                <p>O Google Colaboratory exige que você esteja logado em uma <strong>Conta Google</strong> para carregar o ambiente interativo. Caso apareça uma tela branca ou mensagem de erro, verifique se seu login está ativo.</p>
+                
+                <div class="foto-container">
+                    <img src="Imagens/Erro-colab.gif" alt="Demonstração de Login" class="img-relatorio">
+                    <p class="legenda">Figura 1: Exemplo de tela de erro por falta de permissão ou login.</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="execucao">
+            <article class="card report-section">
+                <h2>2. Como rodar os testes de memória?</h2>
+                <p>Diferente de um site estático, o Colab permite que você <strong>execute</strong> o código C em tempo real. Cada bloco de código possui um botão de "Play" no canto superior esquerdo.</p>
+                
+                <div class="analogia-box">
+                    <strong>Dica Técnica:</strong> Ao clicar no Play, o Google reserva uma pequena parte de um servidor para rodar o código e te mostrar o resultado do <code>sizeof()</code> e dos endereços de memória.
+                </div>
+
+                <div class="foto-container">
+                    <img src="Imagens/instrucao-play.gif" alt="Como dar play no código" class="img-relatorio">
+                    <p class="legenda">Figura 2: Localização do botão de execução no ambiente Colab.</p>
+                </div>
+
+                <h3>Passo a Passo:</h3>
+                <p>1. Localize a célula de código.<br>
+                   2. Clique no ícone de Play.<br>
+                   3. O resultado aparecerá logo abaixo da célula, em uma janela de terminal simulada.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Murilo Guimarães. Acadêmico de ADS.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
